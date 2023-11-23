@@ -16,8 +16,18 @@ def app_situation_run() :
 
     if selected_radio == radio_menu[0] :
         st.dataframe(df)
-        chart=px.pie(data_frame= df, names= '시도별', values='사고건수(건)', title='2005년 ~ 2022년 교통 사고(건)')
-        st.plotly_chart(chart)
+        selected_menu=st.selectbox('항목을 선택하세요', val_col)
+
+        if selected_menu == val_col[0] : 
+            chart=px.pie(data_frame= df, names= '시도별', values=val_col[0], title='2005년 ~ 2022년 교통 사고(건)')
+            st.plotly_chart(chart)
+        elif selected_menu == val_col[1] : 
+            chart=px.pie(data_frame= df, names= '시도별', values=val_col[1], title='2005년 ~ 2022년 교통 사고(건)')
+            st.plotly_chart(chart)
+        elif selected_menu == val_col[2] : 
+            chart=px.pie(data_frame= df, names= '시도별', values=val_col[2], title='2005년 ~ 2022년 교통 사고(건)')
+            st.plotly_chart(chart)
+
 
     elif selected_radio == radio_menu[1] :
         city = df['시도별'].unique()
@@ -27,7 +37,7 @@ def app_situation_run() :
         df_city = df.loc[df['시도별']==selected_city,].reset_index(drop=True)
         
         st.dataframe(df_city)
-        
+
         chart2 = px.line(data_frame=df_city,x='월별', y=val_col, markers=True)
 
         st.plotly_chart(chart2)
