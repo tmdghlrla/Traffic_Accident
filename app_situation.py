@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 
 def app_situation_run() :
     st.subheader('월별 교통사고 현황')
+    st.text('자료 출처 : 인천데이터포털(https://www.incheon.go.kr/data/DATA010301)')
 
     df=pd.read_csv('data/Traffic_Accident.csv', index_col=0, encoding='cp949')
     
