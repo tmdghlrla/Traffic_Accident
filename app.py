@@ -5,7 +5,8 @@ from app_home import app_home_run
 from app_situation import app_situation_run
 
 def main() :
-    st.title('2005년~2022년 시도별 교통사고')
+    st.title('시도별 교통사고')
+    st.subheader('2005년~2022년 자료')
 
     side_menu=['Home','현황']
     choice_menu=st.sidebar.selectbox('메뉴', options=side_menu)
