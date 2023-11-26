@@ -55,7 +55,7 @@ def app_situation_run() :
         
 
         chart2_1 = px.line(data_frame=df_city,x='월별', y=val_col[1], markers=True)
-        chart2_1.update_layout(title='{} 사망자 현황'.format(selected_city))
+        chart2_1.update_layout(title='{} 교통사고 사망자 현황'.format(selected_city))
         st.plotly_chart(chart2_1)
      
     elif selected_radio == radio_menu[2] :
@@ -75,7 +75,7 @@ def app_situation_run() :
         )
         st.plotly_chart(chart3)
         chart3_1 = px.line(data_frame=df_month, x='시도별', y=val_col[1], markers=True)
-        chart3_1.update_layout(title='{} 사망자 현황'.format(selected_month))
+        chart3_1.update_layout(title='{} 교통사고 사망자 현황'.format(selected_month))
         st.plotly_chart(chart3_1)
 
     else :

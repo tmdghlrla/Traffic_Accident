@@ -7,8 +7,10 @@ from app_situation import app_situation_run
 from app_prevention import app_prevention_run
 
 def main() :
-    st.title('시도별 교통사고')
+    st.set_page_config(layout="wide")
 
+    st.title('시도별 교통사고')
+    
     side_menu=['홈','현황', '사고 예방법']
     
     with st.sidebar:
