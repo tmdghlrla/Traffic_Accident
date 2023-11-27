@@ -42,6 +42,9 @@ def app_situation_run() :
         df_city = df.loc[df['시도별']==selected_city,].reset_index(drop=True)
         
         st.dataframe(df_city)
+        st.text("{}에는 {}에 {}건으로 가장 많이 사고가 발생했고,".format(selected_city, list(df_city.loc[df_city[val_col[0]]==df_city[val_col[0]].max(),'월별'])[0],str(df_city[val_col[0]].max())))
+        st.text("사망자수는 {}에 {}명,".format(list(df_city.loc[df_city[val_col[1]] == df_city[val_col[1]].max(),'월별'])[0],str(df_city[val_col[1]].max())))
+        st.text("부상자수는 {}에 {}명으로 가장 많이 발생했습니다.".format(list(df_city.loc[df_city[val_col[2]] == df_city[val_col[2]].max(),'월별'])[0],str(df_city[val_col[2]].max())))
 
         chart2 = px.line(data_frame=df_city,x='월별', y=[val_col[0],val_col[2]], markers=True)
         
@@ -65,7 +68,10 @@ def app_situation_run() :
 
         df_month = df.loc[df['월별']==selected_month,].reset_index(drop=True)
 
-        st.dataframe(df_month)  
+        st.dataframe(df_month)
+        st.text('{}에는 {}에서 {}건으로 가장 많이 사고가 발생했고,'.format(selected_month,list(df_month.loc[df_month[val_col[0]]==df_month[val_col[0]].max(),'시도별'])[0],df_month[val_col[0]].max()))
+        st.text('사망자수는 {}에서 {}명,'.format(list(df_month.loc[df_month[val_col[1]]==df_month[val_col[1]].max(),'시도별'])[0],df_month[val_col[1]].max()))
+        st.text('부상자수는 {}에서 {}명으로 가장 많이 발생했습니다.'.format(list(df_month.loc[df_month[val_col[2]]==df_month[val_col[2]].max(),'시도별'])[0],df_month[val_col[2]].max()))
 
         chart3 = px.line(data_frame=df_month, x='시도별', y=[val_col[0],val_col[2]], markers=True)
         chart3.update_layout(
