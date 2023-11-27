@@ -16,7 +16,7 @@ def main() :
     with st.sidebar:
         choice_menu = option_menu("Menu", side_menu,
                          icons=['house', 'kanban', 'car-front'],
-                         menu_icon="app-indicator", default_index=0,
+                         menu_icon="menu-up", default_index=0,
                          styles={
         "container": {"padding": "4!important", "background-color": "#ccbc97"},
         "icon": {"color": "black", "font-size": "25px"},
