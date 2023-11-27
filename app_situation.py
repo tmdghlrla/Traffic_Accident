@@ -83,9 +83,3 @@ def app_situation_run() :
         chart3_1 = px.line(data_frame=df_month, x='시도별', y=val_col[1], markers=True)
         chart3_1.update_layout(title='{} 교통사고 사망자 현황'.format(selected_month))
         st.plotly_chart(chart3_1)
-    
-    
-
-    sss
-        
-    
