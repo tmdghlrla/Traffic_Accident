@@ -11,11 +11,11 @@ def app_situation_run() :
     
     radio_menu=['전체보기','도시별 보기', '월별 보기']
 
-    selected_radio = st.radio('교통사고 현황', options=radio_menu)
+    selected_tabs = st.tabs(radio_menu)
 
     val_col = ['사고건수(건)','사망자수(명)','부상자수(명)']
 
-    if selected_radio == radio_menu[0] :
+    with selected_tabs[0] :
         pressed_ch=st.checkbox('자료')
         if pressed_ch :
             st.dataframe(df)
@@ -34,7 +34,7 @@ def app_situation_run() :
             chart=px.pie(data_frame= df, names= '시도별', values=val_col[2], title='2005년 ~ 2022년 교통 사고(건)')
             st.plotly_chart(chart)
 
-    elif selected_radio == radio_menu[1] :
+    with selected_tabs[1] :
         city = df['시도별'].unique()
         
         selected_city=st.selectbox('시도별 현황', city)
@@ -58,7 +58,7 @@ def app_situation_run() :
         chart2_1.update_layout(title='{} 교통사고 사망자 현황'.format(selected_city))
         st.plotly_chart(chart2_1)
      
-    elif selected_radio == radio_menu[2] :
+    with selected_tabs[2] :
         month = df['월별'].unique()
 
         selected_month=st.selectbox('월별 현황', month)
@@ -77,9 +77,7 @@ def app_situation_run() :
         chart3_1 = px.line(data_frame=df_month, x='시도별', y=val_col[1], markers=True)
         chart3_1.update_layout(title='{} 교통사고 사망자 현황'.format(selected_month))
         st.plotly_chart(chart3_1)
-
-    else :
-        st.text('')
+    
     
 
     
