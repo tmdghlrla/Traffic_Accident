@@ -15,12 +15,8 @@ def app_situation_run() :
 
     val_col = ['사고건수(건)','사망자수(명)','부상자수(명)']
 
-    with selected_tabs[0] :
-        pressed_ch=st.checkbox('자료')
-        if pressed_ch :
-            st.dataframe(df)
-        else :
-            st.text('')
+    with selected_tabs[0] :        
+        st.dataframe(df)        
         
         selected_menu=st.selectbox('항목을 선택하세요', val_col)
 
