@@ -54,7 +54,7 @@ def app_situation_run() :
         title='{} 교통사고(사고, 부상자) 현황'.format(selected_city),
         xaxis_title='월별',
         yaxis_title='사고(건)/부상자(명)'
-        )        
+        )
         
         st.plotly_chart(chart2)
         
