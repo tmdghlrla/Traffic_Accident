@@ -9,7 +9,7 @@ def app_home_run() :
     st.text('')
     st.text('')
     st.image('https://cdn.pixabay.com/photo/2015/07/14/17/53/car-wrecked-845143_640.jpg', width=900)
-    
+
 
     # st.markdown(
     #      f"""
