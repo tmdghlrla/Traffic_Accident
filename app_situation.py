@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import matplotlib.pyplot as plt
+import altair as alt
 
 def app_situation_run() :
     st.subheader('월별 교통사고 현황')
@@ -20,8 +21,8 @@ def app_situation_run() :
         
         selected_menu=st.selectbox('항목을 선택하세요', val_col)
 
-        if selected_menu == val_col[0] : 
-            chart=px.pie(data_frame= df, names= '시도별', values=val_col[0], title='2005년 ~ 2022년 교통 사고(건)')
+        if selected_menu == val_col[0] :     
+            chart=px.pie(data_frame= df, names= '시도별', values=val_col[0], title='2005년 ~ 2022년 교통 사고(건)')            
             st.plotly_chart(chart)
         elif selected_menu == val_col[1] : 
             chart=px.pie(data_frame= df, names= '시도별', values=val_col[1], title='2005년 ~ 2022년 교통 사고(건)')
@@ -29,7 +30,7 @@ def app_situation_run() :
         elif selected_menu == val_col[2] : 
             chart=px.pie(data_frame= df, names= '시도별', values=val_col[2], title='2005년 ~ 2022년 교통 사고(건)')
             st.plotly_chart(chart)
-
+        st.audio(df)
     with selected_tabs[1] :
         city = df['시도별'].unique()
         
