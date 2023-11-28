@@ -2,7 +2,9 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import matplotlib.pyplot as plt
-import altair as alt
+import plotly.graph_objects as go
+
+from plotly.subplots import make_subplots
 
 def app_situation_run() :
     st.subheader('월별 교통사고 현황')
@@ -36,20 +38,24 @@ def app_situation_run() :
         selected_city=st.selectbox('시도별 현황', city)
 
         df_city = df.loc[df['시도별']==selected_city,].reset_index(drop=True)
-        
-        st.dataframe(df_city)
-        st.text("{}에는 {}에 {}건으로 가장 많이 사고가 발생했고,".format(selected_city, list(df_city.loc[df_city[val_col[0]]==df_city[val_col[0]].max(),'월별'])[0],str(df_city[val_col[0]].max())))
-        st.text("사망자수는 {}에 {}명,".format(list(df_city.loc[df_city[val_col[1]] == df_city[val_col[1]].max(),'월별'])[0],str(df_city[val_col[1]].max())))
-        st.text("부상자수는 {}에 {}명으로 가장 많이 발생했습니다.".format(list(df_city.loc[df_city[val_col[2]] == df_city[val_col[2]].max(),'월별'])[0],str(df_city[val_col[2]].max())))
-
+        col1, col2, col3=st.columns(3)
+        with col1:
+            st.dataframe(df_city)
+        with col2 :
+            with st.expander('가장 많이 발생한 달') :
+                  st.markdown("###### {}에는 {}에 {}건,".format(selected_city, list(df_city.loc[df_city[val_col[0]]==df_city[val_col[0]].max(),'월별'])[0],str(df_city[val_col[0]].max()))+" 사망자수는 {}에 {}명,".format(list(df_city.loc[df_city[val_col[1]] == df_city[val_col[1]].max(),'월별'])[0],str(df_city[val_col[1]].max())))
+                  st.markdown("###### 부상자수는 {}에 {}명으로 가장 많이 발생했습니다.".format(list(df_city.loc[df_city[val_col[2]] == df_city[val_col[2]].max(),'월별'])[0],str(df_city[val_col[2]].max())))
+            with st.expander('가장 적게 발생한 달') :
+                  st.markdown("###### {}에는 {}에 {}건,".format(selected_city, list(df_city.loc[df_city[val_col[0]]==df_city[val_col[0]].min(),'월별'])[0],str(df_city[val_col[0]].min()))+" 사망자수는 {}에 {}명,".format(list(df_city.loc[df_city[val_col[1]] == df_city[val_col[1]].min(),'월별'])[0],str(df_city[val_col[1]].min())))
+                  st.markdown("###### 부상자수는 {}에 {}명으로 가장 적게 발생했습니다.".format(list(df_city.loc[df_city[val_col[2]] == df_city[val_col[2]].min(),'월별'])[0],str(df_city[val_col[2]].min())))
         chart2 = px.line(data_frame=df_city,x='월별', y=[val_col[0],val_col[2]], markers=True)
         
         chart2.update_layout(
         title='{} 교통사고(사고, 부상자) 현황'.format(selected_city),
         xaxis_title='월별',
         yaxis_title='사고(건)/부상자(명)'
-        )
-
+        )        
+        
         st.plotly_chart(chart2)
         
 
