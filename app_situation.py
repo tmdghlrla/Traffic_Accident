@@ -21,16 +21,15 @@ def app_situation_run() :
         
         selected_menu=st.selectbox('항목을 선택하세요', val_col)
 
-        if selected_menu == val_col[0] :     
-            chart=px.pie(data_frame= df, names= '시도별', values=val_col[0], title='2005년 ~ 2022년 교통 사고(건)')            
+        if selected_menu == val_col[0] :
+            chart=px.pie(data_frame= df, names= '시도별', values=val_col[0], title='2005년 ~ 2022년 교통 사고(건)')
             st.plotly_chart(chart)
-        elif selected_menu == val_col[1] : 
+        elif selected_menu == val_col[1] :
             chart=px.pie(data_frame= df, names= '시도별', values=val_col[1], title='2005년 ~ 2022년 교통 사고(건)')
             st.plotly_chart(chart)
-        elif selected_menu == val_col[2] : 
+        elif selected_menu == val_col[2] :
             chart=px.pie(data_frame= df, names= '시도별', values=val_col[2], title='2005년 ~ 2022년 교통 사고(건)')
             st.plotly_chart(chart)
-        st.audio(df)
     with selected_tabs[1] :
         city = df['시도별'].unique()
         
