@@ -38,7 +38,7 @@ def app_situation_run() :
         selected_city=st.selectbox('시도별 현황', city)
 
         df_city = df.loc[df['시도별']==selected_city,].reset_index(drop=True)
-        col1, col2, col3=st.columns(3)
+        col1, col2=st.columns(2)
         with col1:
             st.dataframe(df_city)
         with col2 :
@@ -48,20 +48,21 @@ def app_situation_run() :
             with st.expander('가장 적게 발생한 달') :
                   st.markdown("###### {}에는 {}에 {}건,".format(selected_city, list(df_city.loc[df_city[val_col[0]]==df_city[val_col[0]].min(),'월별'])[0],str(df_city[val_col[0]].min()))+" 사망자수는 {}에 {}명,".format(list(df_city.loc[df_city[val_col[1]] == df_city[val_col[1]].min(),'월별'])[0],str(df_city[val_col[1]].min())))
                   st.markdown("###### 부상자수는 {}에 {}명으로 가장 적게 발생했습니다.".format(list(df_city.loc[df_city[val_col[2]] == df_city[val_col[2]].min(),'월별'])[0],str(df_city[val_col[2]].min())))
-        chart2 = px.line(data_frame=df_city,x='월별', y=[val_col[0],val_col[2]], markers=True)
         
-        chart2.update_layout(
-        title='{} 교통사고(사고, 부상자) 현황'.format(selected_city),
-        xaxis_title='월별',
-        yaxis_title='사고(건)/부상자(명)'
-        )
+        col1, col2 = st.columns([0.5,0.5])
+        with col1 :
+             chart2 = px.line(data_frame=df_city,x='월별', y=[val_col[0],val_col[2]], markers=True)
+             chart2.update_layout(
+                 title='{} 교통사고(사고, 부상자) 현황'.format(selected_city),                             xaxis_title='월별',
+                 yaxis_title='사고(건)/부상자(명)'
+                 )
+             st.plotly_chart(chart2)
         
-        st.plotly_chart(chart2)
-        
-
-        chart2_1 = px.line(data_frame=df_city,x='월별', y=val_col[1], markers=True)
-        chart2_1.update_layout(title='{} 교통사고 사망자 현황'.format(selected_city))
-        st.plotly_chart(chart2_1)
+        with col2 :
+            chart2_1 = px.line(data_frame=df_city,x='월별', y=val_col[1], markers=True)
+            chart2_1.update_layout(title='{} 교통사고 사망자 현황'.format(selected_city),
+                                   showlegend=True)
+            st.plotly_chart(chart2_1)
      
     with selected_tabs[2] :
         month = df['월별'].unique()
