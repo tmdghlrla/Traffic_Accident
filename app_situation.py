@@ -60,8 +60,7 @@ def app_situation_run() :
         
         with col2 :
             chart2_1 = px.line(data_frame=df_city,x='월별', y=val_col[1], markers=True)
-            chart2_1.update_layout(title='{} 교통사고 사망자 현황'.format(selected_city),
-                                   showlegend=True)
+            chart2_1.update_layout(title='{} 교통사고 사망자 현황'.format(selected_city))
             st.plotly_chart(chart2_1)
      
     with selected_tabs[2] :
