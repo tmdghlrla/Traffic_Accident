@@ -69,11 +69,17 @@ def app_situation_run() :
         selected_month=st.selectbox('월별 현황', month)
 
         df_month = df.loc[df['월별']==selected_month,].reset_index(drop=True)
+        col1, col2=st.columns(2)
+        with col1 :
+            st.dataframe(df_month)
 
-        st.dataframe(df_month)
-        st.text('{}에는 {}에서 {}건으로 가장 많이 사고가 발생했고,'.format(selected_month,list(df_month.loc[df_month[val_col[0]]==df_month[val_col[0]].max(),'시도별'])[0],df_month[val_col[0]].max()))
-        st.text('사망자수는 {}에서 {}명,'.format(list(df_month.loc[df_month[val_col[1]]==df_month[val_col[1]].max(),'시도별'])[0],df_month[val_col[1]].max()))
-        st.text('부상자수는 {}에서 {}명으로 가장 많이 발생했습니다.'.format(list(df_month.loc[df_month[val_col[2]]==df_month[val_col[2]].max(),'시도별'])[0],df_month[val_col[2]].max()))
+        with col2 :
+            with st.expander('가장 많이 발생한 도시') :
+                st.markdown('###### {}에는 {}에서 {}건,'.format(selected_month,list(df_month.loc[df_month[val_col[0]]==df_month[val_col[0]].max(),'시도별'])[0],df_month[val_col[0]].max()) + '사망자수는 {}에서 {}명,'.format(list(df_month.loc[df_month[val_col[1]]==df_month[val_col[1]].max(),'시도별'])[0],df_month[val_col[1]].max()))
+                st.markdown('###### 부상자수는 {}에서 {}명으로 가장 많이 발생했습니다.'.format(list(df_month.loc[df_month[val_col[2]]==df_month[val_col[2]].max(),'시도별'])[0],df_month[val_col[2]].max()))
+            with st.expander('가장 적게 발생한 도시') :
+                st.markdown('###### {}에는 {}에서 {}건,'.format(selected_month,list(df_month.loc[df_month[val_col[0]]==df_month[val_col[0]].min(),'시도별'])[0],df_month[val_col[0]].min()) + '사망자수는 {}에서 {}명,'.format(list(df_month.loc[df_month[val_col[1]]==df_month[val_col[1]].min(),'시도별'])[0],df_month[val_col[1]].min()))
+                st.markdown('###### 부상자수는 {}에서 {}명으로 가장 많이 발생했습니다.'.format(list(df_month.loc[df_month[val_col[2]]==df_month[val_col[2]].min(),'시도별'])[0],df_month[val_col[2]].min()))
 
         chart3 = px.line(data_frame=df_month, x='시도별', y=[val_col[0],val_col[2]], markers=True)
         chart3.update_layout(
