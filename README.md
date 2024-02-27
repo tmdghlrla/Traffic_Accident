@@ -6,7 +6,7 @@
 
 ### **[Traffic_Accident 바로가기 🏃‍♂️](http://ec2-3-39-6-135.ap-northeast-2.compute.amazonaws.com:8503/)**
 
-### 🛠Tech Stack 
+### 🔧Tech Stack 
 #
 ![Python](https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
