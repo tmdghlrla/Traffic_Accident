@@ -6,13 +6,13 @@ def app_prevention_run() :
     selected_view = st.tabs(transportation)
 
     with selected_view[0] :
-        st.text('출처:전라북도교육청')
-        st.image('https://news.jbe.go.kr/upload_data/board_data/BBS_0000191/162365714867017.jpg', width=600)
+        st.text('출처:도로교통공단')
+        st.image('https://news.nateimg.co.kr/orgImg/aj/2020/11/26/20201126002914995914.jpg', width=600)
         st.text('')
         st.text('')
         st.text('출처:도로교통공단')
         st.image('https://www.safetimes.co.kr/news/photo/202203/109177_92301_647.png', width=600)
         
     with selected_view[1] :
-        st.text('출처 : 한국교통안전공단')
-        st.image('https://savethelife.kr/wp-content/uploads/2020/09/%EB%B3%B4%ED%96%89_800-1000-1-1.png', width=600)
+        st.text('출처 : 서울특별시')
+        st.image('https://mediahub.seoul.go.kr/wp-content/uploads/2017/03/aaa0489b47474c59dcf61aff73a50eb1.jpg', width=600)
