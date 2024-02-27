@@ -17,7 +17,7 @@
 ![Jupyter](https://img.shields.io/badge/Jupyer-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
 
 
-### 화면 
+### 홈 화면 
 #
 
 ![alt text](image.png)
