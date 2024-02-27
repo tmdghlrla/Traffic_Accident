@@ -19,5 +19,4 @@
 
 ### 화면 
 #
-
-![alt text](image.png)
+![111112312113212313](https://github.com/tmdghlrla/Traffic_Accident/assets/151480604/d9f04b5f-a366-420c-889a-ab3fcc59b231)
